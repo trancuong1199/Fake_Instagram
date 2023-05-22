@@ -6,11 +6,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#000"
     },
     flatlist: {
-        paddingLeft: 10,
-        paddingRight: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
     },  
     layout: {
-        padding: 10,
+        padding: 5,
     },
     header: {
         flexDirection: 'row',
@@ -110,6 +110,40 @@ const styles = StyleSheet.create({
         padding: 5,
         paddingLeft: 20,
         paddingRight: 20,
+    },
+    newsMainStatusText: {
+        color: '#fff',
+        fontSize: 14
+    },
+    newsMainStatusTag: {
+        color: '#46AFF0'
+    },
+    newsMainStatusMore: {
+        color: '#A5A7A9'
+    },
+    newsMainStatusComment: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 10
+    },  
+    newsMainStatusCommentInput: {
+        height: 35,
+        width: '70%',
+        color: '#6B6B6B',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 10,
+        fontSize: 15,
+        paddingLeft: 0
+    },
+    newsMainStatusCommentRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    newsMainStatusCommentIconHand: {
+        color: '#EDF90D',
+        marginRight: 5
     }
 })
 

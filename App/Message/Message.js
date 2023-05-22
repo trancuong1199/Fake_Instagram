@@ -10,11 +10,11 @@ import {
 import styles from './stylesMessage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {Accounts} from '../Data/Data';
+import {Accounts} from '../../Data/Data';
 import {ListNews} from '../../Components/ListNews/ListNews';
 
 const Message = ({navigation}) => {
-  const [text, onChangeText] = useState('Search...');
+  const [text, onChangeText] = useState('');
 
   const ListMessages = props => (
     <View style={styles.messageDetail}>
@@ -69,6 +69,8 @@ const Message = ({navigation}) => {
           style={styles.inputSearch}
           onChangeText={onChangeText}
           value={text}
+          placeholder="Search..."
+          placeholderTextColor='#6B6B6B'
         />
         <Ionicons
           name="search-outline"

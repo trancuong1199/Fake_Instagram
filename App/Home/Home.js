@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState, useCallback} from 'react';
 import {
   View,
   Text,
@@ -6,18 +6,23 @@ import {
   FlatList,
   SafeAreaView,
   RefreshControl,
+  TextInput,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './stylesHome';
+import * as request from '../../utils/request'
 
-import {Accounts} from '../Data/Data';
+import {Accounts} from '../../Data/Data';
 import {ListNews} from '../../Components/ListNews/ListNews';
+import Menu from '../../Components/Menu/Menu';
 
 function Home({navigation}) {
   // Refresh data When the ScrollView is at scrollY: 0
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = React.useCallback(() => {
+  const [text, onChangeText] = useState('');
+
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
@@ -39,8 +44,8 @@ function Home({navigation}) {
         <View style={styles.icons}>
           <Ionicons name="heart" size={28} marginRight={5} color="red" />
           <Ionicons
-            name="search-outline"
-            size={28}
+            name="chatbox-ellipses-outline"
+            size={26}
             marginRight={5}
             style={styles.iconWhite}
           />
@@ -57,11 +62,41 @@ function Home({navigation}) {
           marginRight={5}
           style={styles.iconWhite}
         />
+      </View> 
+      <View paddingLeft={5} paddingRight={5}>
+        <Text style={styles.newsMainTitle}>
+          Like by <Text style={styles.likesDetail}>Tran Cuong</Text> and{' '}
+          <Text style={styles.likesDetail}>B.A.P company</Text>
+        </Text>
+        <Text style={styles.newsMainStatusText}>
+          Welcome to BAP company{' '}
+          <Text style={styles.newsMainStatusTag}>#BAP</Text>
+          <Text style={styles.newsMainStatusTag}> #Mobile</Text>
+          <Text style={styles.newsMainStatusMore}> ...more</Text>
+        </Text>
+        <Text style={styles.newsMainStatusMore}>View all comments</Text>
+        <View style={styles.newsMainStatusComment}>
+          <View style={styles.newsMainStatusCommentRight}>
+            <Image style={styles.avatar} source={{uri: props.image}} />
+            <TextInput
+              style={styles.newsMainStatusCommentInput}
+              onChangeText={onChangeText}
+              value={text}
+              placeholder="Add a comment..."
+              placeholderTextColor='#6B6B6B'
+            />
+          </View>
+          <View style={styles.newsMainStatusCommentRight}>
+            <Ionicons name="heart" size={20} color="red" />
+            <Ionicons
+              style={styles.newsMainStatusCommentIconHand}
+              name="hand-right"
+              size={20}
+            />
+          </View>
+        </View>
+
       </View>
-      <Text style={styles.newsMainTitle}>
-        Like by <Text style={styles.likesDetail}>Tran Cuong</Text> and{' '}
-        <Text style={styles.likesDetail}>B.A.P company</Text>
-      </Text>
     </View>
   );
 
@@ -88,7 +123,7 @@ function Home({navigation}) {
               size={25}
               marginLeft={5}
               style={styles.iconWhite}
-              onPress={() => navigation.navigate('Message')}
+              onPress={() => navigation.push('Message')}
             />
           </View>
         </View>
@@ -117,38 +152,7 @@ function Home({navigation}) {
         )}
         keyExtractor={item => item.name}
       />
-      <View style={styles.mainBottom}>
-        <Ionicons
-          name="home-outline"
-          size={30}
-          marginLeft={5}
-          style={styles.iconWhite}
-        />
-        <Ionicons
-          name="search-outline"
-          size={30}
-          marginLeft={5}
-          style={styles.iconWhite}
-        />
-        <Ionicons
-          name="add-circle-outline"
-          size={30}
-          marginLeft={5}
-          style={styles.iconWhite}
-        />
-        <Ionicons
-          name="videocam-outline"
-          size={30}
-          marginLeft={5}
-          style={styles.iconWhite}
-        />
-        <Ionicons
-          name="person-circle-outline"
-          size={30}
-          marginLeft={5}
-          style={styles.iconWhite}
-        />
-      </View>
+      <Menu />
     </SafeAreaView>
   );
 }

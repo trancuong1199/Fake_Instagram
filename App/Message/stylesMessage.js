@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingLeft: 40,
         marginTop: 10,
-        fontSize: 15
+        fontSize: 15,
     },
     inputIconSearch: {
         position: 'relative',
