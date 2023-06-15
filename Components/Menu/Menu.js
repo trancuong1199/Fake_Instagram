@@ -1,11 +1,14 @@
 import React from 'react';
 import {View, SafeAreaView} from 'react-native';
-import styles from './stylesMenu';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+
+import styles from './stylesMenu';
 
 const Menu = () => {
   const navigation = useNavigation();
+  const Tab = createMaterialBottomTabNavigator();
 
   return (
     <SafeAreaView>
@@ -22,6 +25,7 @@ const Menu = () => {
           size={30}
           marginLeft={5}
           style={styles.iconWhite}
+          onPress={() => navigation.navigate('Search')}
         />
         <Ionicons
           name="add-circle-outline"
@@ -41,9 +45,15 @@ const Menu = () => {
           size={30}
           marginLeft={5}
           style={styles.iconWhite}
+          onPress={() => navigation.navigate('Personal', {itemId: 9})}
         />
       </View>
     </SafeAreaView>
+
+    // <Tab.Navigator backBehavior='history' initialRouteName='Home'>
+    //   <Tab.Screen name="Home" component={Home} />
+    //   <Tab.Screen name="Personal" component={Personal} />
+    // </Tab.Navigator>
   );
 };
 
